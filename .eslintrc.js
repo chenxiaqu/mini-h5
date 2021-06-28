@@ -1,3 +1,12 @@
+/*
+ * @Author: 庞昭昭
+ * @Date: 2021-06-25 14:23:34
+ * @LastEditTime: 2021-06-28 14:54:32
+ * @LastEditors: 庞昭昭
+ * @Description: esLint配置
+ * @FilePath: \mini-h5\.eslintrc.js
+ * 记得注释
+ */
 module.exports = {
   root: true,
   env: {
@@ -27,6 +36,8 @@ module.exports = {
     "@typescript-eslint/no-this-alias": "off",
     "@typescript-eslint/no-empty-function": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-inferrable-types": "off",
+    '@typescript-eslint/no-non-null-assertion': 'off',
     "prettier/prettier": ["warn", {
       "sing1eQuote": true
     }] //开启单引号},

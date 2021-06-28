@@ -1,7 +1,7 @@
 <!--
  * @Author: 庞昭昭
  * @Date: 2021-06-25 14:23:34
- * @LastEditTime: 2021-06-25 17:38:56
+ * @LastEditTime: 2021-06-28 17:51:47
  * @LastEditors: 庞昭昭
  * @Description: 首页
  * @FilePath: \mini-h5\src\views\Home\Home.vue
@@ -9,12 +9,28 @@
 -->
 <template>
   <div class="home">
-    <div class="header flex_start_row">{{ aaa }}</div>
-    <van-swipe :autoplay="3000" lazy-render class="home-swipe">
-      <van-swipe-item v-for="image in images" :key="image">
-        <img :src="image" />
-      </van-swipe-item>
-    </van-swipe>
+    <!-- 顶部背景图 -->
+    <div class="top-bg"></div>
+    <!-- 搜索框 -->
+    <van-search class="search-input" v-model="searchCode" shape="round" background="#4fc08d" placeholder="请输入搜索关键词" />
+    <!-- 主题部分 -->
+    <div class="main">
+      <!-- 轮播图 -->
+      <van-swipe :autoplay="3000" lazy-render class="home-swipe">
+        <van-swipe-item v-for="image in images" :key="image">
+          <img :src="image.imgUrl" />
+        </van-swipe-item>
+      </van-swipe>
+      <!-- 金刚区 -->
+      <div class="flex_between_wrap_start home-category">
+        <div class="flex_center_column category-item" v-for="item in categoryList" :key="item.id">
+          <div class="img-view">
+            <img :src="item.imgUrl" />
+          </div>
+          <span class="category-title">{{ item.title }}</span>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -23,12 +39,47 @@
 <style lang="less" scoped>
 .home {
   width: 100vw;
-  .header {
+  .top-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 20vh;
+    background: linear-gradient(#4fc08d, rgba(0, 0, 0, 0));
   }
-  .home-swipe {
-    margin: 20px auto;
-    width: 80vw;
-    height: 220px;
+  .search-input {
+    position: relative;
+    z-index: 100;
+  }
+  .main {
+    width: 100vw;
+    padding: 0 24px;
+    box-sizing: border-box;
+    .home-swipe {
+      margin: 20px auto;
+      width: 100%;
+      height: 20vh;
+    }
+    .home-category {
+      margin-top: 20px;
+      width: 100%;
+      .category-item {
+        margin-bottom: 20px;
+        width: 20%;
+        .img-view {
+          width: 80%;
+          height: 80%;
+        }
+        .category-title {
+          font-size: 14px;
+          color: #535050;
+        }
+      }
+    }
+  }
+  img {
+    width: 100%;
+    height: 100%;
   }
 }
 </style>

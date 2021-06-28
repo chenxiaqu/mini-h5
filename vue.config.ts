@@ -27,6 +27,17 @@ module.exports = {
         // 返回修改后的选项配置。
         return options
       })
+    const oneOfsMap = config.module.rule('less').oneOfs.store
+    oneOfsMap.forEach((item) => {
+      item
+        .use('sass-resources-loader')
+        .loader('sass-resources-loader')
+        .options({
+          // 这里填入你的样式文件地址
+          resources: './static/base.less'
+        })
+        .end()
+    })
   },
   css: {
     loaderOptions: {
