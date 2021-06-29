@@ -1,7 +1,7 @@
 <!--
  * @Author: 庞昭昭
  * @Date: 2021-06-25 14:23:34
- * @LastEditTime: 2021-06-28 17:51:47
+ * @LastEditTime: 2021-06-29 10:32:45
  * @LastEditors: 庞昭昭
  * @Description: 首页
  * @FilePath: \mini-h5\src\views\Home\Home.vue
@@ -22,12 +22,12 @@
         </van-swipe-item>
       </van-swipe>
       <!-- 金刚区 -->
-      <div class="flex_between_wrap_start home-category">
+      <div class="flex_row_wrap_start home-category">
         <div class="flex_center_column category-item" v-for="item in categoryList" :key="item.id">
           <div class="img-view">
             <img :src="item.imgUrl" />
           </div>
-          <span class="category-title">{{ item.title }}</span>
+          <span class="one_clamp category-title">{{ item.title }}</span>
         </div>
       </div>
     </div>
@@ -65,13 +65,20 @@
       width: 100%;
       .category-item {
         margin-bottom: 20px;
+        padding: 0 4px;
         width: 20%;
+        height: 72px;
+        box-sizing: border-box;
         .img-view {
-          width: 80%;
-          height: 80%;
+          width: 100%;
+          height: 52px;
         }
         .category-title {
-          font-size: 14px;
+          flex: 0 0 auto;
+          margin-top: 4px;
+          height: 16px;
+          line-height: 16px;
+          font-size: 12px;
           color: #535050;
         }
       }
