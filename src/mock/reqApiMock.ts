@@ -1,7 +1,7 @@
 /*
  * @Author: 庞昭昭
  * @Date: 2021-06-28 16:35:45
- * @LastEditTime: 2021-06-28 17:35:45
+ * @LastEditTime: 2021-06-29 11:20:09
  * @LastEditors: 庞昭昭
  * @Description: reqApi的mock数据
  * @FilePath: \mini-h5\src\mock\reqApiMock.ts
@@ -88,9 +88,7 @@ export default class reqApiMock {
         // 商品Code
         code: Random.integer(1000, 99999),
         // 商品展示图片
-        imgUrl: Random.character(
-          'https://img2.baidu.com/it/u=3566088443,3713209594&fm=26&fmt=auto&gp=0.jpg/https://img0.baidu.com/it/u=1904359974,2894644924&fm=11&fmt=auto&gp=0.jpg/https://img0.baidu.com/it/u=1838988081,2167427448&fm=26&fmt=auto&gp=0.jpg'
-        ),
+        imgUrl: 'https://img2.baidu.com/it/u=3566088443,3713209594&fm=26&fmt=auto&gp=0.jpg',
         // 商品展示轮播图
         imgList: [
           'https://img2.baidu.com/it/u=3566088443,3713209594&fm=26&fmt=auto&gp=0.jpg',
