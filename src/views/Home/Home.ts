@@ -1,50 +1,71 @@
 /*
  * @Author: 庞昭昭
  * @Date: 2021-06-25 16:31:51
- * @LastEditTime: 2021-06-29 11:55:17
+ * @LastEditTime: 2021-06-30 17:45:42
  * @LastEditors: 庞昭昭
  * @Description: 首页
  * @FilePath: \mini-h5\src\views\Home\Home.ts
  * 记得注释
  */
-import { Search, Button, Swipe, SwipeItem, Icon, Tabbar, TabbarItem } from 'vant'
+import { Search, Button, Swipe, SwipeItem, Icon } from 'vant'
 import { defineComponent, ref, computed, onMounted } from 'vue'
+import { useStore } from 'vuex'
+import { cartFun } from '../common/Cart'
+import { modCartLinesType } from '@/model/CartEnum'
 import reqApi from '@/http/reqApi/reqApi'
 import HomeInit from '@/model/HomeInit'
+import Line from '@/model/Line'
+import Sku from '@/model/Sku'
+import TabBar from '@/views/components/TabBar/TabBar.vue'
 
 export default defineComponent({
   components: {
+    TabBar,
     [Search.name]: Search,
     [Swipe.name]: Swipe,
     [Button.name]: Button,
     [SwipeItem.name]: SwipeItem,
-    [Icon.name]: Icon,
-    [Tabbar.name]: Tabbar,
-    [TabbarItem.name]: TabbarItem
+    [Icon.name]: Icon
   },
-  setup() {
-    const homeData = ref<HomeInit>(new HomeInit())
-    const searchCode = ref<string>('')
-    const activeTab = ref<number | string>('home')
+  setup(props, ctx) {
+    const store = useStore()
+    const homeData = ref<HomeInit>(new HomeInit()) // 首页初始化数据
+    const searchCode = ref<string>('') // 搜索文本
+    const modType = modCartLinesType // 修改商品行操作类型枚举
 
     // 轮播图
     const images = computed(() => {
       return homeData.value.swiperImgUrl
     })
+
     // 金刚区数据
     const categoryList = computed(() => {
       return homeData.value.category
     })
+
     // 商品数据
     const skuList = computed(() => {
       return homeData.value.skuList
     })
 
+    // 获取购物车中相应商品数量
+    const getCartLineNum = computed(() => (skuId: string) => {
+      const lines: Line[] = store.state.cart.lines.filter((line: Line) => {
+        return line.id == skuId
+      })
+      if (lines.length > 0) return lines[0].qty
+      else return 0
+    })
+
+    const { modCartNet } = cartFun() // 购物车修改方法
+
     onMounted(() => {
       init()
     })
 
-    // 首页初始化
+    /**
+     * 首页初始化
+     */
     function init() {
       reqApi.homeInit().then((res) => {
         homeData.value = res.data!
@@ -52,21 +73,23 @@ export default defineComponent({
     }
 
     /**
-     * tabbar标签切换
-     * @param active 选中的tabbar
+     * 添加购物车
+     * @param sku 商品数据
      */
-    function onActiveTabChange(active: number | string) {
-      activeTab.value = active
+    function addCart(sku: Sku) {
+      modCartNet(sku, modType.plus, 1)
     }
 
     return {
       homeData,
       searchCode,
-      activeTab,
       images,
       categoryList,
       skuList,
-      onActiveTabChange
+      getCartLineNum,
+      modCartNet,
+      init,
+      addCart
     }
   }
 })

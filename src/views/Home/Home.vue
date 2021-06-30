@@ -1,7 +1,7 @@
 <!--
  * @Author: 庞昭昭
  * @Date: 2021-06-25 14:23:34
- * @LastEditTime: 2021-06-29 19:41:00
+ * @LastEditTime: 2021-06-30 17:54:04
  * @LastEditors: 庞昭昭
  * @Description: 首页
  * @FilePath: \mini-h5\src\views\Home\Home.vue
@@ -41,8 +41,8 @@
                 ￥
                 <span class="price">{{ sku.price }}</span>
               </div>
-              <div class="add-cart">
-                <van-icon name="cart-o" color="#1989fa" :badge="8" />
+              <div class="add-cart" @click="addCart(sku)">
+                <van-icon name="cart-o" color="#f5f5f5" :badge="getCartLineNum(sku.id)" />
               </div>
             </div>
           </div>
@@ -50,30 +50,29 @@
       </div>
     </div>
     <!-- tabbar -->
-    <van-tabbar v-model="activeTab" :placeholder="true" active-color="#4fc08d" @change="onActiveTabChange">
-      <van-tabbar-item name="home" icon="wap-home-o">首页</van-tabbar-item>
-      <van-tabbar-item name="category" icon="apps-o">分类</van-tabbar-item>
-      <van-tabbar-item name="cart" icon="shopping-cart-o" :badge="5">购物车</van-tabbar-item>
-      <van-tabbar-item name="mine" icon="user-o" :dot="true">我的</van-tabbar-item>
-    </van-tabbar>
+    <tab-bar></tab-bar>
   </div>
 </template>
 
 <script lang="ts" src="./Home.ts"></script>
 
 <style lang="less" scoped>
+@color-theme: #4fc08d; // 主题色;
+@bg-white: #fff; // 背景颜色-白色;
 .home {
   width: 100vw;
+  background-color: #f5f5f5;
   .top-bg {
     position: absolute;
     top: 0;
     left: 0;
     width: 100vw;
     height: 20vh;
-    background: linear-gradient(#4fc08d, rgba(0, 0, 0, 0));
+    background: linear-gradient(@color-theme, rgba(0, 0, 0, 0));
   }
   .search-input {
-    position: relative;
+    position: sticky;
+    top: 0;
     z-index: 100;
   }
   .main {
@@ -113,7 +112,8 @@
       .sku-info {
         margin-bottom: 12px;
         width: 49%;
-        height: 228px;
+        height: 242px;
+        background-color: @bg-white;
         border-radius: 8px;
         img {
           width: 100%;
@@ -123,7 +123,7 @@
         .sku-info-bottom {
           flex: 1 1 auto;
           width: 100%;
-          padding: 2px;
+          padding: 2px 2px 6px 2px;
           box-sizing: border-box;
           .sku-desc {
             margin-bottom: 6px;
@@ -143,7 +143,10 @@
               }
             }
             .add-cart {
-              // background-color: @color-theme;
+              padding: 2px;
+              background-color: @color-theme;
+              border-radius: 50%;
+              opacity: 0.6;
             }
           }
         }
