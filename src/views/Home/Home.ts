@@ -1,7 +1,7 @@
 /*
  * @Author: 庞昭昭
  * @Date: 2021-06-25 16:31:51
- * @LastEditTime: 2021-06-30 17:45:42
+ * @LastEditTime: 2021-06-30 19:34:57
  * @LastEditors: 庞昭昭
  * @Description: 首页
  * @FilePath: \mini-h5\src\views\Home\Home.ts
@@ -10,13 +10,13 @@
 import { Search, Button, Swipe, SwipeItem, Icon } from 'vant'
 import { defineComponent, ref, computed, onMounted } from 'vue'
 import { useStore } from 'vuex'
-import { cartFun } from '../common/Cart'
+import { cartFun } from '@/common/Cart'
 import { modCartLinesType } from '@/model/CartEnum'
 import reqApi from '@/http/reqApi/reqApi'
 import HomeInit from '@/model/HomeInit'
 import Line from '@/model/Line'
 import Sku from '@/model/Sku'
-import TabBar from '@/views/components/TabBar/TabBar.vue'
+import TabBar from '@/components/Business/TabBar/TabBar.vue'
 
 export default defineComponent({
   components: {
