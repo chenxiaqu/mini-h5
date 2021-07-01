@@ -1,10 +1,10 @@
 /*
  * @Author: 庞昭昭
  * @Date: 2021-06-30 16:51:46
- * @LastEditTime: 2021-06-30 19:12:03
+ * @LastEditTime: 2021-07-01 10:13:31
  * @LastEditors: 庞昭昭
  * @Description: 购物车相关操作
- * @FilePath: \mini-h5\src\views\common\Cart.ts
+ * @FilePath: \mini-h5\src\common\Cart.ts
  * 记得注释
  */
 import { modCartLinesType } from '@/model/CartEnum'

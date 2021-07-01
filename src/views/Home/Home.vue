@@ -1,7 +1,7 @@
 <!--
  * @Author: 庞昭昭
  * @Date: 2021-06-25 14:23:34
- * @LastEditTime: 2021-06-30 17:54:04
+ * @LastEditTime: 2021-07-01 10:19:47
  * @LastEditors: 庞昭昭
  * @Description: 首页
  * @FilePath: \mini-h5\src\views\Home\Home.vue
@@ -32,21 +32,7 @@
       </div>
       <!-- 商品区 -->
       <div class="flex_row_wrap_start home-sku">
-        <div class="flex_between_column sku-info" v-for="sku in skuList" :key="sku.id">
-          <img :src="sku.imgUrl" />
-          <div class="flex_between_column sku-info-bottom">
-            <div class="two-clamp sku-desc">{{ sku.name }} /{{ sku.unit }}</div>
-            <div class="flex_between_row sku-info-price-add">
-              <div class="sku-price">
-                ￥
-                <span class="price">{{ sku.price }}</span>
-              </div>
-              <div class="add-cart" @click="addCart(sku)">
-                <van-icon name="cart-o" color="#f5f5f5" :badge="getCartLineNum(sku.id)" />
-              </div>
-            </div>
-          </div>
-        </div>
+        <two-column-sku v-for="sku in skuList" :key="sku.id" :sku="sku" :badge="getCartLineNum(sku.id)" @addCart="addCart"></two-column-sku>
       </div>
     </div>
     <!-- tabbar -->
@@ -58,7 +44,6 @@
 
 <style lang="less" scoped>
 @color-theme: #4fc08d; // 主题色;
-@bg-white: #fff; // 背景颜色-白色;
 .home {
   width: 100vw;
   background-color: #f5f5f5;
@@ -109,56 +94,7 @@
     }
     .home-sku {
       width: 100%;
-      .sku-info {
-        margin-bottom: 12px;
-        width: 49%;
-        height: 242px;
-        background-color: @bg-white;
-        border-radius: 8px;
-        img {
-          width: 100%;
-          height: 168px;
-          flex: 0 0 auto;
-        }
-        .sku-info-bottom {
-          flex: 1 1 auto;
-          width: 100%;
-          padding: 2px 2px 6px 2px;
-          box-sizing: border-box;
-          .sku-desc {
-            margin-bottom: 6px;
-            width: 100%;
-            font-size: 14px;
-            text-align: left;
-          }
-          .sku-info-price-add {
-            width: 100%;
-            padding-right: 6px;
-            box-sizing: border-box;
-            .sku-price {
-              font-size: 12px;
-              .price {
-                font-size: 16px;
-                color: red;
-              }
-            }
-            .add-cart {
-              padding: 2px;
-              background-color: @color-theme;
-              border-radius: 50%;
-              opacity: 0.6;
-            }
-          }
-        }
-      }
-      .sku-info:nth-child(2n + 1) {
-        margin-right: 2%;
-      }
     }
-  }
-  img {
-    width: 100%;
-    height: 100%;
   }
 }
 </style>

@@ -1,13 +1,13 @@
 /*
  * @Author: 庞昭昭
  * @Date: 2021-06-25 16:31:51
- * @LastEditTime: 2021-06-30 19:34:57
+ * @LastEditTime: 2021-07-01 09:52:49
  * @LastEditors: 庞昭昭
  * @Description: 首页
  * @FilePath: \mini-h5\src\views\Home\Home.ts
  * 记得注释
  */
-import { Search, Button, Swipe, SwipeItem, Icon } from 'vant'
+import { Search, Button, Swipe, SwipeItem } from 'vant'
 import { defineComponent, ref, computed, onMounted } from 'vue'
 import { useStore } from 'vuex'
 import { cartFun } from '@/common/Cart'
@@ -17,17 +17,18 @@ import HomeInit from '@/model/HomeInit'
 import Line from '@/model/Line'
 import Sku from '@/model/Sku'
 import TabBar from '@/components/Business/TabBar/TabBar.vue'
+import TwoColumnSku from '@/components/Business/TwoColumnSku/TwoColumnSku.vue'
 
 export default defineComponent({
   components: {
     TabBar,
+    TwoColumnSku,
     [Search.name]: Search,
     [Swipe.name]: Swipe,
     [Button.name]: Button,
-    [SwipeItem.name]: SwipeItem,
-    [Icon.name]: Icon
+    [SwipeItem.name]: SwipeItem
   },
-  setup(props, ctx) {
+  setup() {
     const store = useStore()
     const homeData = ref<HomeInit>(new HomeInit()) // 首页初始化数据
     const searchCode = ref<string>('') // 搜索文本
