@@ -1,7 +1,7 @@
 /*
  * @Author: 庞昭昭
  * @Date: 2021-06-30 15:39:53
- * @LastEditTime: 2021-06-30 15:42:59
+ * @LastEditTime: 2021-07-06 17:29:41
  * @LastEditors: 庞昭昭
  * @Description: 商品行数据
  * @FilePath: \mini-h5\src\model\Line.ts
@@ -19,9 +19,9 @@ export default class Line {
   // 商品展示轮播图
   imgList: string[] = []
   // 商品原价
-  price: string = ''
+  price: number = 0
   // 促销价
-  promotPrice: string = ''
+  promotPrice: number = 0
   // 商品单位
   unit: string = ''
   // 商品总数

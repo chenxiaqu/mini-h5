@@ -1,7 +1,7 @@
 /*
  * @Author: 庞昭昭
  * @Date: 2021-06-28 14:35:44
- * @LastEditTime: 2021-06-28 17:11:08
+ * @LastEditTime: 2021-07-06 17:30:51
  * @LastEditors: 庞昭昭
  * @Description: 商品信息
  * @FilePath: \mini-h5\src\model\Sku.ts
@@ -19,9 +19,9 @@ export default class Sku {
   // 商品展示轮播图
   imgList: string[] = []
   // 商品原价
-  price: string = ''
+  price: number = 0
   // 促销价
-  promotPrice: string = ''
+  promotPrice: number = 0
   // 商品单位
   unit: string = ''
   // 商品总数
