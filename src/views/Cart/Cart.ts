@@ -1,7 +1,7 @@
 /*
  * @Author: 庞昭昭
  * @Date: 2021-06-30 18:54:39
- * @LastEditTime: 2021-07-06 18:11:20
+ * @LastEditTime: 2021-07-07 14:43:19
  * @LastEditors: 庞昭昭
  * @Description: 购物车
  * @FilePath: \mini-h5\src\views\Cart\Cart.ts
@@ -17,7 +17,7 @@ import SkuCard from './cmp/SkuCard.vue'
 import { cloneDeep } from '@/utils/ObjectUtil'
 import Line from '@/model/Line'
 import { cartFun } from '@/common/Cart'
-
+import { useRouter } from 'vue-router'
 export default defineComponent({
   components: {
     TabBar,
@@ -28,6 +28,8 @@ export default defineComponent({
   },
   setup() {
     const store = useStore()
+    const router = useRouter()
+    const emptyCartImg = require('@/assets/img/cart_empty.gif') // 空购物车图片
 
     // 购物车数据
     const cartData = computed(() => {
@@ -90,7 +92,15 @@ export default defineComponent({
       doSubmitCar(submitCart.value)
     }
 
+    /**
+     * 去首页
+     */
+    function doBrowse() {
+      router.push('./Home')
+    }
+
     return {
+      emptyCartImg,
       cartData,
       cartLines,
       canSubmit,
@@ -98,7 +108,8 @@ export default defineComponent({
       rtlAmount,
       doDeleteSku,
       doDelete,
-      doSubmit
+      doSubmit,
+      doBrowse
     }
   }
 })
