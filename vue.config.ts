@@ -1,8 +1,16 @@
+/*
+ * @Author: 庞昭昭
+ * @Date: 2021-06-25 15:58:47
+ * @LastEditTime: 2021-06-30 11:02:43
+ * @LastEditors: 庞昭昭
+ * @Description: 配置文件
+ * @FilePath: \mini-h5\vue.config.ts
+ * 记得注释
+ */
 import merge from 'webpack-merge'
 import tsImportPluginFactory from 'ts-import-plugin'
 import autoprefixer from 'autoprefixer'
 import pxtoviewport from 'postcss-px-to-viewport'
-
 module.exports = {
   chainWebpack: (config) => {
     config.module
@@ -30,25 +38,23 @@ module.exports = {
     const oneOfsMap = config.module.rule('less').oneOfs.store
     oneOfsMap.forEach((item) => {
       item
-        .use('sass-resources-loader')
-        .loader('sass-resources-loader')
+        .use('style-resources-loader')
+        .loader('style-resources-loader')
         .options({
-          // 这里填入你的样式文件地址
-          resources: './static/base.less'
+          // or an array : ["./path/to/vars.less", "./path/to/mixins.less"] 这里的路径不能使用@，否则会报错
+          patterns: './src/assets/base.less'
         })
         .end()
     })
   },
   css: {
-    loaderOptions: {
-      postcss: {
-        plugins: [
-          autoprefixer(),
-          pxtoviewport({
-            viewportWidth: 375
-          })
-        ]
-      }
+    postcss: {
+      plugins: [
+        autoprefixer(),
+        pxtoviewport({
+          viewportWidth: 375
+        })
+      ]
     }
   }
 }
